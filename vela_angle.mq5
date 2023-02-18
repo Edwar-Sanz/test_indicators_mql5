@@ -1,3 +1,7 @@
+#property copyright "Edwar-Sanz"
+#property link      "https://github.com/Edwar-Sanz"
+#property version   "1.00"
+
 #include <MovingAverages.mqh>
 
 #property indicator_separate_window
