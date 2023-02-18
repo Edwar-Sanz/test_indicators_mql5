@@ -19,6 +19,11 @@
 #property indicator_width2  1                   // grosor de la linea
 
 //---------------------------------------------------------------------------------------------------------
+//inputs
+
+input int inpt_ma = 3;
+
+//---------------------------------------------------------------------------------------------------------
 double   vela_powerBuffer[];
 double ma_v_powerBuffer[];
 int SimpleMAOnBuffer;
@@ -38,11 +43,9 @@ int OnCalculate(const int rates_total, const int prev_calculated, const datetime
                 const double &open[], const double &high[], const double &low[], const double &close[],
                 const long &tick_volume[], const long &volume[], const int &spread[]){
 
-   
    int star = 0;
    if(prev_calculated != 0 ) star = prev_calculated - 1;
- 
-   
+  
    double d =  pow(10, _Digits);
    for(int i=star; i<rates_total; i++){
       if(i > 0){
@@ -51,11 +54,9 @@ int OnCalculate(const int rates_total, const int prev_calculated, const datetime
       vela_powerBuffer[i] = power;
       
       } 
-   }
+   } 
    
-   
-   SimpleMAOnBuffer(rates_total,star, 0, 3, vela_powerBuffer, ma_v_powerBuffer);
-
+   SimpleMAOnBuffer(rates_total,star, 0, inpt_ma, vela_powerBuffer, ma_v_powerBuffer);
 
    return(rates_total);
 }
