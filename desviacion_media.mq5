@@ -43,9 +43,9 @@ int OnCalculate(const int rates_total, const int prev_calculated, const datetime
                 const double &open[], const double &high[], const double &low[], const double &close[],
                 const long &tick_volume[], const long &volume[], const int &spread[]){ 
    
-   CopyBuffer(handle_ima, 0, 0, rates_total, imaBuffer);
+   CopyBuffer(handle_ima, 0, 0, prev_calculated, imaBuffer);
    double d =  pow(10, -_Digits);    
-   for(int i=0; i<rates_total; i++){
+   for(int i=0; i<prev_calculated; i++){
       if(i > periodos){      
          double contador = 0;
          for(int j=0; j<periodos;j++){
@@ -53,7 +53,8 @@ int OnCalculate(const int rates_total, const int prev_calculated, const datetime
             contador += aux_array[j];
          }
          dev_mediaBuffer[i] = MathRound(contador / periodos, _Digits);   
-  }
+      }
+   }
    return(rates_total);
 }
 
